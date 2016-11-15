@@ -1,4 +1,8 @@
-PROJECT(sigar C)
+IF(WIN32) 
+	PROJECT(sigar)
+ELSE()
+	PROJECT(sigar C)
+ENDIF()
 
 cmake_minimum_required(VERSION 2.6)
 
@@ -32,4 +36,3 @@ ENDIF(WIN32)
 ADD_SUBDIRECTORY(src build-src)
 ADD_SUBDIRECTORY(tests build-tests)
 ADD_SUBDIRECTORY(include build-include)
-
