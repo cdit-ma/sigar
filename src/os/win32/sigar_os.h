@@ -20,25 +20,23 @@
 #define SIGAR_OS_H
 
 #if !defined(MSVC) && defined(_MSC_VER)
-#define MSVC
+	#define MSVC
 #endif
 
 #ifdef MSVC
-#define WIN32_LEAN_AND_MEAN
-#if _MSC_VER < 1400
-#define snprintf _snprintf
-#endif
-
-#endif
-#if _MSC_VER <= 1200
-#define SIGAR_USING_MSC6 /* Visual Studio version 6 */
-#define HAVE_MIB_IPADDRROW_WTYPE 0
+	#define WIN32_LEAN_AND_MEAN
+	#if _MSC_VER < 1400
+		#define snprintf _snprintf
+	#endif
+	#if _MSC_VER <= 1200
+		#define SIGAR_USING_MSC6 /* Visual Studio version 6 */
+		#define HAVE_MIB_IPADDRROW_WTYPE 0
+	#else
+		#define HAVE_MIB_IPADDRROW_WTYPE 1
+	#endif
 #else
-#define HAVE_MIB_IPADDRROW_WTYPE 1
-#endif
-#else
-/* Cross compiling */
-#define _WIN32_WINNT 0x0501
+	/* Cross compiling */
+	#define _WIN32_WINNT 0x0501
 #endif
 
 #include <windows.h>
